@@ -17,7 +17,7 @@ class Mission
 		"a3_characters_f",
 		"Hezbollah",
 		"SUD_GW_U",
-		"A3_Characters_F_BLUFOR"
+		"A3_Characters_F_OPFOR"
 	};
 	addOnsAuto[]=
 	{
@@ -26,7 +26,7 @@ class Mission
 		"A3_Characters_F_Civil",
 		"a3_characters_f",
 		"SUD_GW_U",
-		"A3_Characters_F_BLUFOR",
+		"A3_Characters_F_OPFOR",
 		"A3_Weapons_F_Ammoboxes",
 		"RDS_StaticWeapons_Aggressors",
 		"camisc_e",
@@ -394,18 +394,16 @@ class Mission
 		};
 		class Item5
 		{
-			side="WEST";
+			side="EAST";
 			class Vehicles
 			{
 				items=1;
 				class Item0
 				{
-					position[]={3879.7822,31.715115,5963.2363};
-					azimut=79.401604;
-					special="NONE";
+					position[]={1902.0177,38.871441,4694.3228};
 					id=25;
-					side="WEST";
-					vehicle="B_Soldier_F";
+					side="EAST";
+					vehicle="O_Soldier_F";
 					player="PLAYER COMMANDER";
 					leader=1;
 					skill=0.60000002;
@@ -810,13 +808,13 @@ class Mission
 		};
 		class Item10
 		{
-			position[]={3351.3293,14.215075,142.13135};
+			position[]={3306.8433,12.998443,141.57861};
 			name="heli_alpha";
 			type="Empty";
 		};
 		class Item11
 		{
-			position[]={3219.7129,10.450963,141.80176};
+			position[]={3266.4092,12.085821,142.07764};
 			name="heli_bravo";
 			type="Empty";
 		};

@@ -1,7 +1,79 @@
+// Icludes para a missão
+#include "BTS\joinerUI\defines.hpp"
+#include "BTS\joinerUI\dialog.hpp"
+
 #include "Zen_FrameworkFunctions\Zen_LoadoutFunctions\Zen_LoadoutDialog.hpp"
+
+
+
+// Classes de apoio
 class CfgNotifications {
     #include "Zen_FrameworkFunctions\Zen_TaskSystem\Zen_TaskNotifications.hpp"
 };
+
 class CfgCommunicationMenu {
     #include "Zen_FrameworkFunctions\Zen_FireSupportSystem\Zen_FireSupportMenu.hpp"
 };
+
+class CfgMusic
+{
+	tracks[]={rescue};
+
+	class rescue
+	{
+		name = "rescue";
+		sound[] = {\Sounds\rescue.ogg, db+2, 1.0};
+        };
+
+};
+
+class CfgDebriefing
+{
+	class End1
+	{
+		title = "Fracasso!";
+		subtitle = "Seu esquadrão foi eliminado.";
+		description = "O governo alega não ter conhecimento de você e de sua tropa.";
+		pictureBackground = "signs\logo.paa";
+		pictureColor[] = {0.0,0.3,0.6,1};
+	};
+	class End2
+	{
+		title = "Sucesso!";
+		subtitle = "Completou a extração.";
+		description = "Seu esquadrão saiu do país, evitando assim uma crise diplomática";
+		pictureBackground = "signs\logo.paa";
+		pictureColor[] = {0.0,0.3,0.6,1};
+	};
+};
+
+
+
+
+
+
+
+author = "Toaster[BTS]";
+onLoadName = "Resgate Impossível";
+onLoadMission = "“Diplomacia é a arte de mandar as pessoas para o inferno de uma maneira em que elas perguntem qual é o melhor caminho.” - Winston Churchill";
+loadScreen = "Images\cia.paa";
+overviewPicture = "Images\cia.paa";
+overviewText = "“Diplomacia é a arte de mandar as pessoas para o inferno de uma maneira em que elas perguntem qual é o melhor caminho.” - Winston Churchill";
+respawn = "BASE";
+enableDebugConsole = 1;
+DisabledAI = true;
+
+
+
+
+
+class Header
+{
+	gameType = Coop;
+	minPlayers = 1;
+	maxPlayers = 50;
+};
+
+
+
+
