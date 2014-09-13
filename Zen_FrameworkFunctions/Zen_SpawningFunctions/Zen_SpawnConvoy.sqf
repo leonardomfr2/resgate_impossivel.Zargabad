@@ -22,9 +22,9 @@ switch (_side) do {
         _troopVehicleType = [["b_mrap_01_f", "b_truck_01_covered_f", "b_truck_01_transport_f"]] call Zen_ArrayGetRandom;
     };
     case east: {
-        _leadVehicleType = [["o_mrap_02_hmg_f", "O_MRAP_02_gmg_F"]] call Zen_ArrayGetRandom;
-        _supplyvehicleType = [["O_Truck_03_device_F", "o_Truck_02_ammo_F", "o_Truck_02_fuel_F", "o_Truck_02_box_F", "o_Truck_02_medical_F"]] call Zen_ArrayGetRandom;
-        _troopVehicleType = [["o_mrap_02_f", "O_Truck_03_transport_F", "O_Truck_03_covered_F", "o_truck_02_covered_f", "O_Truck_02_transport_F"]] call Zen_ArrayGetRandom;
+        _leadVehicleType = [["HEZB_Offroad_01_armed"]] call Zen_ArrayGetRandom;
+        _supplyvehicleType = [["o_Truck_02_ammo_F", "o_Truck_02_fuel_F", "o_Truck_02_box_F", "o_Truck_02_medical_F"]] call Zen_ArrayGetRandom;
+        _troopVehicleType = [["o_truck_02_covered_f", "o_truck_02_transport_f" ]] call Zen_ArrayGetRandom;
     };
     case resistance: {
         _leadVehicleType = [["i_mrap_03_hmg_f", "I_MRAP_03_gmg_F"]] call Zen_ArrayGetRandom;
