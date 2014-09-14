@@ -87,7 +87,7 @@ _bravoHeli = ["heli_bravo", "B_Heli_Transport_01_F", 40] call Zen_SpawnHelicopte
 // Espera o esquadrao chegar a menos de 10 metros pra soltar o supply
 waitUntil {
     sleep 2;
-	(([_BTSalpha, "BTSpousoAlpha"] call Zen_Find2dDistance) < 10)
+	(([_alphaHeli, "BTSpousoAlpha"] call Zen_Find2dDistance) < 100 || ([_bravoHeli, "BTSpousoBravo"] call Zen_Find2dDistance) < 100)
 };
 [BTSsupplyDrop] call Zen_SpawnParachute;
 
