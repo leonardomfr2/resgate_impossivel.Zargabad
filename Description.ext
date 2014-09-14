@@ -56,8 +56,8 @@ class CfgDebriefing
 author = "Toaster[BTS]";
 onLoadName = "Resgate Impossível";
 onLoadMission = "“Diplomacia é a arte de mandar as pessoas para o inferno de uma maneira em que elas perguntem qual é o melhor caminho.” - Winston Churchill";
-loadScreen = "Images\cia.paa";
-overviewPicture = "Images\cia.paa";
+loadScreen = "Images\rescue.jpg";
+overviewPicture = "Images\rescue.jpg";
 overviewText = "“Diplomacia é a arte de mandar as pessoas para o inferno de uma maneira em que elas perguntem qual é o melhor caminho.” - Winston Churchill";
 respawn = "BASE";
 enableDebugConsole = 1;

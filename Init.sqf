@@ -3,7 +3,6 @@
 // Resgate impossivel by Toaster[BTS]
 // Version = 0.1
 
-titleText ["Boa sorte a todos!", "BLACK FADED", 0.2];
 enableSaving [false, false];
 
 
@@ -38,6 +37,36 @@ sleep 1;
 ///////////////////////////////// SERVER SIDE A PARTIR DESTA LINHA  /////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+
+
+//////////////// MACROS /////////////////////////
+
+// Apaga os maracdores do mapa
+#define _MARKERALPHA(ARG1) ARG1 setMarkerAlpha 0;
+_MARKERALPHA("azizayt_01");
+_MARKERALPHA("azizayt_02");
+_MARKERALPHA("azizayt_03");
+_MARKERALPHA("azizayt_04");
+_MARKERALPHA("BTSroadblock");
+
+////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Cacheia os grupos para performance
 _BTSalpha = group alpha;
 _BTSbravo = group bravo;
@@ -55,26 +84,113 @@ _bravoHeli = ["heli_bravo", "B_Heli_Transport_01_F", 40] call Zen_SpawnHelicopte
 0 = [_BTSbravo, _bravoHeli] call Zen_MoveInVehicle;
 
 
-// Espera o esquadrao chegar a menos de 50 metros pra soltar o supply
+// Espera o esquadrao chegar a menos de 10 metros pra soltar o supply
 waitUntil {
     sleep 2;
-	(([_BTSalpha, "BTSpousoAlpha"] call Zen_Find2dDistance) < 50)
+	(([_BTSalpha, "BTSpousoAlpha"] call Zen_Find2dDistance) < 10)
 };
 [BTSsupplyDrop] call Zen_SpawnParachute;
 
 
-// Apaga a caixa se o player sair do raio de 1000 metros
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////  PLAYERS JA NO SOLO A PARTIR DESTA LINHA //////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////
+//=/=/=/=/=/=/=/=/=/=/=/=/=/ INICIO EVENTOS ALEATORIOS //=/=/=/=/=/=/=/=/=/=/=/=/=/
+//////////////////////////////////////////////////////////////////////////////////
+
+
+// EVENTO 01: Massacre de Civis
 0 = [] spawn {
 
+	waitUntil {	
+	sleep 2;
+	(([Player, "BTSroadblock"] call Zen_Find2dDistance) < 200)
+	};
+
+
+	_evento01 = [ "BTSroadblock", east, "Infantry", 3, "Hezbollah", "Hezbollah"] call Zen_SpawnInfantry;
+	0 = [_evento01, "sof"] call Zen_SetAISkill;
+	
+};
+
+
+
+// EVENTO 02: Roubo do Suprimento
+0 = [] spawn {
+	// Apaga a caixa se o player sair do raio de 1000 metros
 	waitUntil {	
 	sleep 2;
 	(([Player, "BTSpousoAlpha"] call Zen_Find2dDistance) > 1000)
 	};
 
-	hint "Caixa apagada";
+
 	deleteVehicle BTSsupplyDrop;
+};
+
+
+// EVENTO 03: Too Many, so few
+0 = [] spawn {
+
+	waitUntil {	
+	sleep 2;
+	//(([Player, "BTSroadblock"] call Zen_Find2dDistance) < 200)
+	(([Player, "BTSroadblock"] call Zen_Find2dDistance) < 100)
+	};
+
+
+	_evento03 = ["BTSconvoy", east, 0] call Zen_SpawnConvoy;
+	{
+		[_x, "BTSroadblock"] call Zen_OrderVehicleMove;
+	} forEach _evento03;
+	
 	
 };
+
+
+////////////////////////////////////////////////////////////////////////////////////
+//=/=/=/=/=/=/=/=/=/=/=/=/=/ FINAL EVENTOS ALEATORIOS //=/=/=/=/=/=/=/=/=/=/=/=/=/
+//////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Popula a base de Azizayt

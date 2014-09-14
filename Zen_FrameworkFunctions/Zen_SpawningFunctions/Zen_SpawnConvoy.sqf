@@ -15,6 +15,14 @@ if !([_this, [["VOID"], ["SIDE"]], [], 2] call Zen_CheckArguments) exitWith {
 _startPos = [(_this select 0)] call Zen_ConvertToPosition;
 _side = _this select 1;
 
+if (count _this > 1) then {
+
+    StartDirection = _this select 2;
+
+} else {
+    StartDirection = [_startPos] call Zen_FindRoadDirection;
+};
+
 switch (_side) do {
     case west: {
         _leadVehicleType = [["b_mrap_01_hmg_f", "B_MRAP_01_gmg_F"]] call Zen_ArrayGetRandom;
@@ -43,14 +51,16 @@ if (_leadVehicleType == "") exitWith {
     ([objNull])
 };
 
-_roadDir = [_startPos] call Zen_FindRoadDirection;
+_roadDir = StartDirection;
+
 
 _leadVehicle = [([_startPos, 30, _roadDir, "trig"] call zen_ExtendPosition), _leadVehicleType, 90 - _roadDir] call Zen_SpawnGroundVehicle;
 _supplyVehicle = [([_startPos, 15, _roadDir, "trig"] call zen_ExtendPosition), _supplyvehicleType, 90 - _roadDir] call Zen_SpawnGroundVehicle;
 _troopVehicle = [([_startPos, 1, _roadDir, "trig"] call zen_ExtendPosition), _troopVehicleType, 90 - _roadDir] call Zen_SpawnGroundVehicle;
 
 _troopCargo = ZEN_STD_OBJ_CVS(_troopVehicle) - 1;
-_troopGroup = [_startPos, _side, "infantry", [1, _troopCargo]] call Zen_SpawnInfantry;
+_troopGroup = [_startPos, _side, "infantry", [1, _troopCargo], "Hezbollah", "Hezbollah"] call Zen_SpawnInfantry;
+
 0 = [_troopGroup, _troopVehicle, "cargo"] call Zen_MoveInVehicle;
 
 _vehGroup = group driver _leadVehicle;
