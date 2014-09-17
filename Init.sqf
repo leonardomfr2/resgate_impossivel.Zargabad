@@ -85,10 +85,10 @@ _bravoHeli = ["heli_bravo", "B_Heli_Transport_01_F", 40] call Zen_SpawnHelicopte
 
 
 // Espera o esquadrao chegar a menos de 10 metros pra soltar o supply
-waitUntil {
-    sleep 2;
-	(([_alphaHeli, "BTSpousoAlpha"] call Zen_Find2dDistance) < 100 || ([_bravoHeli, "BTSpousoBravo"] call Zen_Find2dDistance) < 100)
-};
+// waitUntil {
+//     sleep 2;
+// 	(([_alphaHeli, "BTSpousoAlpha"] call Zen_Find2dDistance) < 100 || ([_bravoHeli, "BTSpousoBravo"] call Zen_Find2dDistance) < 100)
+// };
 [BTSsupplyDrop] call Zen_SpawnParachute;
 
 
@@ -135,7 +135,7 @@ waitUntil {
 	};
 
 
-	_evento01 = [ "BTSroadblock", east, "Infantry", 3, "Hezbollah", "Hezbollah"] call Zen_SpawnInfantry;
+	_evento01 = [ "BTSroadblock", east, "Infantry", 3, "Men", "Marv_IS"] call Zen_SpawnInfantry;
 	0 = [_evento01, "sof"] call Zen_SetAISkill;
 	
 };
@@ -194,10 +194,10 @@ waitUntil {
 
 
 // Popula a base de Azizayt
-_spwAzizayt_01 = [ "azizayt_01", east, "Infantry", 8, "Hezbollah", "Hezbollah"] call Zen_SpawnInfantry;
-_spwAzizayt_02 = [ "azizayt_02", east, "Infantry", 8, "Hezbollah", "Hezbollah"] call Zen_SpawnInfantry;
-_spwAzizayt_03 = [ "azizayt_03", east, "Infantry", 8, "Hezbollah", "Hezbollah"] call Zen_SpawnInfantry;
-_spwAzizayt_04 = [ "azizayt_04", east, "Infantry", 6, "Hezbollah", "Hezbollah"] call Zen_SpawnInfantryGarrison;
+_spwAzizayt_01 = [ "azizayt_01", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantry;
+_spwAzizayt_02 = [ "azizayt_02", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantry;
+_spwAzizayt_03 = [ "azizayt_03", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantry;
+_spwAzizayt_04 = [ "azizayt_04", east, "Infantry", 6, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
 
 0 = [_spwAzizayt_01, "azizayt_01"] spawn Zen_OrderInfantryPatrol;
 0 = [_spwAzizayt_02, "azizayt_02"] spawn Zen_OrderInfantryPatrol;
