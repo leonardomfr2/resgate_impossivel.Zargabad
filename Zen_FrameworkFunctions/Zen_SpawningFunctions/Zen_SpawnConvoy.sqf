@@ -30,7 +30,7 @@ switch (_side) do {
         _troopVehicleType = [["b_mrap_01_f", "b_truck_01_covered_f", "b_truck_01_transport_f"]] call Zen_ArrayGetRandom;
     };
     case east: {
-        _leadVehicleType = [["HEZB_Offroad_01_armed"]] call Zen_ArrayGetRandom;
+        _leadVehicleType = [["IS_armed"]] call Zen_ArrayGetRandom;
         _supplyvehicleType = [["o_Truck_02_ammo_F", "o_Truck_02_fuel_F", "o_Truck_02_box_F", "o_Truck_02_medical_F"]] call Zen_ArrayGetRandom;
         _troopVehicleType = [["o_truck_02_covered_f", "o_truck_02_transport_f" ]] call Zen_ArrayGetRandom;
     };

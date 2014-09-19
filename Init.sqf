@@ -12,7 +12,7 @@ player creatediaryRecord["Diary", ["Missão", "Intercept and destroy a convoy re
 player creatediaryRecord["Diary", ["Situação", "Intercept and destroy a convoy resupplying the radar site.<br/>The radar site may be guarded by one squad.<br/>"]];
 
 
-execVM "Intro.sqf";
+//execVM "Intro.sqf";
 
 
 // Executa o SQUAD MANAGER
