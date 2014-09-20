@@ -49,10 +49,32 @@ _MARKERALPHA("azizayt_02");
 _MARKERALPHA("azizayt_03");
 _MARKERALPHA("azizayt_04");
 _MARKERALPHA("BTSroadblock");
+_MARKERALPHA("nango_01");
+_MARKERALPHA("nango_02");
+_MARKERALPHA("nango_03");
+_MARKERALPHA("nango_04");
 
 ////////////////////////////////////////////////
 
 
+
+
+//////////////// METODOS /////////////////////////
+f_checkBTSposition = {
+	private ["_squad","_objective","_distance"];
+
+	_squadUnit = _this select 0;
+	_squadObjective = _this select 1;
+	_squadDistance = _this select 2;
+
+	_squadCenter = _squadUnit call Zen_FindAveragePosition;
+
+	_result = ([_squadCenter, _squadObjective] call Zen_Find2dDistance) < _squadDistance;
+	
+	(_result)
+};
+
+////////////////////////////////////////////////
 
 
 
@@ -71,6 +93,21 @@ _MARKERALPHA("BTSroadblock");
 _BTSalpha = group alpha;
 _BTSbravo = group bravo;
 
+
+// DEBUG
+_charlie = group charlie;
+arrayDEBUG = units _charlie;
+
+
+// Coloca todas unidades em um array para uso posterior
+todosPlayersArray = units _BTSalpha + units _BTSbravo;
+alphaPlayersarray = units _BTSalpha;
+bravoPlayersarray = units _BTSbravo;
+
+
+
+
+
 // Cria os helicopteros
 _alphaHeli = ["heli_alpha", "B_Heli_Transport_01_F", 40] call Zen_SpawnHelicopter;
 _bravoHeli = ["heli_bravo", "B_Heli_Transport_01_F", 40] call Zen_SpawnHelicopter;
@@ -85,10 +122,12 @@ _bravoHeli = ["heli_bravo", "B_Heli_Transport_01_F", 40] call Zen_SpawnHelicopte
 
 
 // Espera o esquadrao chegar a menos de 10 metros pra soltar o supply
-// waitUntil {
-//     sleep 2;
-// 	(([_alphaHeli, "BTSpousoAlpha"] call Zen_Find2dDistance) < 100 || ([_bravoHeli, "BTSpousoBravo"] call Zen_Find2dDistance) < 100)
-// };
+waitUntil {
+    sleep 2;
+
+   [arrayDEBUG, "BTSpousoAlpha", 100] call f_checkBTSposition;
+};
+hint "DROP!";
 [BTSsupplyDrop] call Zen_SpawnParachute;
 
 
@@ -131,7 +170,10 @@ _bravoHeli = ["heli_bravo", "B_Heli_Transport_01_F", 40] call Zen_SpawnHelicopte
 
 	waitUntil {	
 	sleep 2;
-	(([Player, "BTSroadblock"] call Zen_Find2dDistance) < 200)
+
+	_squadCenter = todosPlayersArray call Zen_FindAveragePosition;
+
+	(([_todosPlayersArray, "BTSroadblock"] call Zen_Find2dDistance) < 400)
 	};
 
 
@@ -147,7 +189,7 @@ _bravoHeli = ["heli_bravo", "B_Heli_Transport_01_F", 40] call Zen_SpawnHelicopte
 	// Apaga a caixa se o player sair do raio de 1000 metros
 	waitUntil {	
 	sleep 2;
-	(([Player, "BTSpousoAlpha"] call Zen_Find2dDistance) > 1000)
+	(([_todosPlayersArray, "BTSpousoAlpha"] call Zen_Find2dDistance) > 1000)
 	};
 
 
@@ -160,8 +202,8 @@ _bravoHeli = ["heli_bravo", "B_Heli_Transport_01_F", 40] call Zen_SpawnHelicopte
 
 	waitUntil {	
 	sleep 2;
-	//(([Player, "BTSroadblock"] call Zen_Find2dDistance) < 200)
-	(([Player, "BTSroadblock"] call Zen_Find2dDistance) < 100)
+	
+	(([_todosPlayersArray, "BTSroadblock"] call Zen_Find2dDistance) < 500)
 	};
 
 
@@ -218,16 +260,39 @@ _spwAzizayt_04 = [ "azizayt_04", east, "Infantry", 6, "Men", "Marv_IS"] call Zen
 
 
 
-// 0 = [] spawn {
-//         waitUntil {
-//             sleep 2;
-//             (([_BTSalpha, "BTSpousoAlpha"] call Zen_Find2dDistance) < 50)
-//         };
+// Popula Nango 
+0 = [] spawn { 
 
-//        	[BTSsupplyDrop] call Zen_SpawnParachute;
-//        	hint "chute!"
+	waitUntil {
+	    sleep 2;
+	 	(([_todosPlayersArray, "nango_01"] call Zen_Find2dDistance) < 800)
+	 };
 
-//         // {
-//         //     deleteVehicle _x;
-//         // } forEach (crew (_this select 0) + [(_this select 0)]);
-//     };
+	_spwNango_01 = [ "nango_01", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantry;
+	_spwNango_02 = [ "nango_02", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantry;
+	_spwNango_03 = [ "nango_03", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantry;
+	_spwNango_04 = [ "nango_04", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantry;
+
+	_spwnCarNango01 = ["nango_01", "IS_armed"] call Zen_SpawnVehicle;
+	0 = [_spwnCarNango01, east] call Zen_SpawnVehicleCrew;
+	0 = [_spwnCarNango01, "nango_01"] spawn Zen_OrderVehiclePatrol;
+
+	_spwnCarNango02 = ["nango_02", "IS_armed"] call Zen_SpawnVehicle;
+	0 = [_spwnCarNango02, east] call Zen_SpawnVehicleCrew;
+	0 = [_spwnCarNango02, "nango_02"] spawn Zen_OrderVehiclePatrol;
+
+	_spwnCarNango03 = ["nango_03", "IS_armed"] call Zen_SpawnVehicle;
+	0 = [_spwnCarNango03, east] call Zen_SpawnVehicleCrew;
+	0 = [_spwnCarNango03, "nango_03"] spawn Zen_OrderVehiclePatrol;
+
+	_spwnCarNango04 = ["nango_04", "IS_armed"] call Zen_SpawnVehicle;
+	0 = [_spwnCarNango04, east] call Zen_SpawnVehicleCrew;
+	0 = [_spwnCarNango04, "nango_04"] spawn Zen_OrderVehiclePatrol;
+
+	0 = [_spwNango_01, "nango_01"] spawn Zen_OrderInfantryPatrol;
+	0 = [_spwNango_02, "nango_02"] spawn Zen_OrderInfantryPatrol;
+	0 = [_spwNango_03, "nango_03"] spawn Zen_OrderInfantryPatrol;
+	0 = [_spwNango_04, "nango_04"] spawn Zen_OrderInfantryPatrol;
+
+};
+
