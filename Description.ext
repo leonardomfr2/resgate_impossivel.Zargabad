@@ -2,6 +2,8 @@
 #include "BTS\joinerUI\defines.hpp"
 #include "BTS\joinerUI\dialog.hpp"
 
+#include "LxOPS\lxOPS_dlg.hpp"
+
 #include "Zen_FrameworkFunctions\Zen_LoadoutFunctions\Zen_LoadoutDialog.hpp"
 
 

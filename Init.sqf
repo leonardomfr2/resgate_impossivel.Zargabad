@@ -54,25 +54,32 @@ _MARKERALPHA("nango_02");
 _MARKERALPHA("nango_03");
 _MARKERALPHA("nango_04");
 
+_MARKERALPHA("v");
+_MARKERALPHA("v_01");
+_MARKERALPHA("v_2");
+_MARKERALPHA("v_3");
+_MARKERALPHA("v_4");
+_MARKERALPHA("v_5");
+_MARKERALPHA("h");
+_MARKERALPHA("h_1");
+
+_MARKERALPHA("b");
+_MARKERALPHA("b1");
+_MARKERALPHA("b2");
+_MARKERALPHA("b3");
+_MARKERALPHA("b4");
+_MARKERALPHA("b5");
+_MARKERALPHA("b6");
+
+
+
+
 ////////////////////////////////////////////////
 
 
 
 
-//////////////// METODOS /////////////////////////
-f_checkBTSposition = {
-	private ["_squad","_objective","_distance"];
 
-	_squadUnit = _this select 0;
-	_squadObjective = _this select 1;
-	_squadDistance = _this select 2;
-
-	_squadCenter = _squadUnit call Zen_FindAveragePosition;
-
-	_result = ([_squadCenter, _squadObjective] call Zen_Find2dDistance) < _squadDistance;
-	
-	(_result)
-};
 
 ////////////////////////////////////////////////
 
@@ -82,7 +89,7 @@ f_checkBTSposition = {
 
 
 
-
+if (isServer) then {call compile preprocessFile "Scripts\initBuildings.sqf";};
 
 
 
@@ -90,19 +97,16 @@ f_checkBTSposition = {
 
 
 // Cacheia os grupos para performance
-_BTSalpha = group alpha;
-_BTSbravo = group bravo;
+BTSalpha = group alpha;
+BTSbravo = group bravo;
 
 
-// DEBUG
-_charlie = group charlie;
-arrayDEBUG = units _charlie;
 
 
 // Coloca todas unidades em um array para uso posterior
-todosPlayersArray = units _BTSalpha + units _BTSbravo;
-alphaPlayersarray = units _BTSalpha;
-bravoPlayersarray = units _BTSbravo;
+todosPlayersArray = units BTSalpha + units BTSbravo;
+alphaPlayersarray = units BTSalpha;
+bravoPlayersarray = units BTSbravo;
 
 
 
@@ -113,22 +117,22 @@ _alphaHeli = ["heli_alpha", "B_Heli_Transport_01_F", 40] call Zen_SpawnHelicopte
 _bravoHeli = ["heli_bravo", "B_Heli_Transport_01_F", 40] call Zen_SpawnHelicopter;
 
 // Manda os helis pro LimaZulu
-0 = [_alphaHeli, ["BTSpousoAlpha", "heli_alpha"], _BTSalpha, "normal", 40] spawn Zen_OrderInsertion;
-0 = [_bravoHeli, ["BTSpousoBravo", "heli_bravo"], _BTSalpha, "normal", 40] spawn Zen_OrderInsertion;
+0 = [_alphaHeli, ["BTSpousoAlpha", "heli_alpha"], BTSalpha, "normal", 40] spawn Zen_OrderInsertion;
+0 = [_bravoHeli, ["BTSpousoBravo", "heli_bravo"], BTSalpha, "normal", 40] spawn Zen_OrderInsertion;
 
 // Coloca os squads nos helis
-0 = [_BTSalpha, _alphaHeli] call Zen_MoveInVehicle;
-0 = [_BTSbravo, _bravoHeli] call Zen_MoveInVehicle;
+0 = [BTSalpha, _alphaHeli] call Zen_MoveInVehicle;
+0 = [BTSbravo, _bravoHeli] call Zen_MoveInVehicle;
 
 
 // Espera o esquadrao chegar a menos de 10 metros pra soltar o supply
-waitUntil {
-    sleep 2;
+// waitUntil {
+//     sleep 2;
 
-   [arrayDEBUG, "BTSpousoAlpha", 100] call f_checkBTSposition;
-};
-hint "DROP!";
-[BTSsupplyDrop] call Zen_SpawnParachute;
+//    [arrayDEBUG, "BTSpousoAlpha", 100] call f_checkBTSposition;
+// };
+//hint "DROP!";
+//[BTSsupplyDrop] call Zen_SpawnParachute;
 
 
 
@@ -157,7 +161,7 @@ hint "DROP!";
 
 
 
-
+/*
 
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -171,9 +175,8 @@ hint "DROP!";
 	waitUntil {	
 	sleep 2;
 
-	_squadCenter = todosPlayersArray call Zen_FindAveragePosition;
+	(([BTSalpha, "BTSroadblock"] call Zen_Find2dDistance) < 500 || ([BTSbravo, "BTSroadblock"] call Zen_Find2dDistance) < 500)
 
-	(([_todosPlayersArray, "BTSroadblock"] call Zen_Find2dDistance) < 400)
 	};
 
 
@@ -188,8 +191,9 @@ hint "DROP!";
 0 = [] spawn {
 	// Apaga a caixa se o player sair do raio de 1000 metros
 	waitUntil {	
-	sleep 2;
-	(([_todosPlayersArray, "BTSpousoAlpha"] call Zen_Find2dDistance) > 1000)
+		sleep 2;
+	
+		(([BTSalpha, "BTSpousoAlpha"] call Zen_Find2dDistance) > 1000 || ([BTSbravo, "BTSpousoBravo"] call Zen_Find2dDistance) > 1000)
 	};
 
 
@@ -201,9 +205,8 @@ hint "DROP!";
 0 = [] spawn {
 
 	waitUntil {	
-	sleep 2;
-	
-	(([_todosPlayersArray, "BTSroadblock"] call Zen_Find2dDistance) < 500)
+		sleep 2;
+		(([BTSalpha, "BTSroadblock"] call Zen_Find2dDistance) < 500 || ([BTSbravo, "BTSroadblock"] call Zen_Find2dDistance) < 500)
 	};
 
 
@@ -265,7 +268,8 @@ _spwAzizayt_04 = [ "azizayt_04", east, "Infantry", 6, "Men", "Marv_IS"] call Zen
 
 	waitUntil {
 	    sleep 2;
-	 	(([_todosPlayersArray, "nango_01"] call Zen_Find2dDistance) < 800)
+	 	(([BTSalpha, "nango_03"] call Zen_Find2dDistance) < 800 || ([BTSbravo, "nango_03"] call Zen_Find2dDistance) < 800)
+	 	
 	 };
 
 	_spwNango_01 = [ "nango_01", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantry;
@@ -296,3 +300,32 @@ _spwAzizayt_04 = [ "azizayt_04", east, "Infantry", 6, "Men", "Marv_IS"] call Zen
 
 };
 
+
+
+*/
+
+_v01 = [ "v", east, "Infantry", 1, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+_v02 = [ "v_1", east, "Infantry", 1, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+_v03 = [ "v_2", east, "Infantry", 1, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+_v04 = [ "v_3", east, "Infantry", 1, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+_v05 = [ "v_4", east, "Infantry", 1, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+_v06 = [ "v_5", east, "Infantry", 1, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+
+_h = [ "h", east, "Infantry", 30, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+_h_1 = [ "h_1", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+
+0 = [s1, east] call Zen_SpawnVehicleCrew;
+0 = [s2, east] call Zen_SpawnVehicleCrew;
+0 = [s3, east] call Zen_SpawnVehicleCrew;
+0 = [s4, east] call Zen_SpawnVehicleCrew;
+0 = [s5, east] call Zen_SpawnVehicleCrew;
+0 = [s6, east] call Zen_SpawnVehicleCrew;
+
+
+_b01 = [ "b", east, "Infantry", 15, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+_b02 = [ "b1", east, "Infantry", 20, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+_b03 = [ "b2", east, "Infantry", 20, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+_b04 = [ "b3", east, "Infantry", 5, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+_b05 = [ "b4", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+_b06 = [ "b5", east, "Infantry", 9, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+_b06 = [ "b6", east, "Infantry", 6, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
