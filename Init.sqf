@@ -15,11 +15,6 @@ player creatediaryRecord["Diary", ["Situação", "Intercept and destroy a convoy
 //execVM "Intro.sqf";
 
 
-// Executa o SQUAD MANAGER
- _Functions = []ExecVM "BTS\joinerUI\GroupMonitor.sqf";
- waitUntil {ScriptDone _Functions};
- Player AddEventHandler ["Respawn", {_menu = (_this select 0) addAction ["<t color=""#3399FF"">" +"Gerenciador de Pelotões", "BTS\joinerUI\showJoiner.sqf","",-98,false,false]}];
- _menu = player addAction ["<t color=""#3399FF"">" +"Gerenciador de Pelotões", "BTS\joinerUI\showJoiner.sqf","",-98,false,false];
 
 
 
@@ -92,7 +87,52 @@ _MARKERALPHA("b6");
 if (isServer) then {call compile preprocessFile "Scripts\initBuildings.sqf";};
 
 
+// Coloca AGM nos carros de policia
+clearMagazineCargoGlobal police01;
+clearWeaponCargoGlobal police01;
+clearItemCargoGlobal police01;
+clearBackpackCargoGlobal police01;
 
+
+police01 additemCargoGlobal ["AGM_EarBuds", 4];
+police01 additemCargoGlobal ["AGM_Bandage", 40];
+police01 additemCargoGlobal ["AGM_Morphine", 18];
+police01 additemCargoGlobal ["AGM_Epipen", 13];
+police01 additemCargoGlobal ["AGM_Bloodbag", 7];
+
+
+clearMagazineCargoGlobal police02;
+clearWeaponCargoGlobal police02;
+clearItemCargoGlobal police02;
+clearBackpackCargoGlobal police02;
+
+police02 additemCargoGlobal ["AGM_Clacker", 1];
+police02 additemCargoGlobal ["AGM_DefusalKit", 1];
+police02 additemCargoGlobal ["AGM_EarBuds", 4];
+police02 additemCargoGlobal ["AGM_MapTools", 1];
+police02 additemCargoGlobal ["AGM_SpareBarrel", 3];
+police02 additemCargoGlobal ["AGM_ItemKestrel", 1];
+
+// Limpa carro isis
+clearMagazineCargoGlobal carisis;
+clearWeaponCargoGlobal carisis;
+clearItemCargoGlobal carisis;
+clearBackpackCargoGlobal carisis;
+
+clearMagazineCargoGlobal carisis02;
+clearWeaponCargoGlobal carisis02;
+clearItemCargoGlobal carisis02;
+clearBackpackCargoGlobal carisis02;
+
+clearMagazineCargoGlobal carisis03;
+clearWeaponCargoGlobal carisis03;
+clearItemCargoGlobal carisis03;
+clearBackpackCargoGlobal carisis03;
+
+clearMagazineCargoGlobal carisis04;
+clearWeaponCargoGlobal carisis04;
+clearItemCargoGlobal carisis04;
+clearBackpackCargoGlobal carisis04;
 
 
 
@@ -123,16 +163,17 @@ _bravoHeli = ["heli_bravo", "B_Heli_Transport_01_F", 40] call Zen_SpawnHelicopte
 // Coloca os squads nos helis
 0 = [BTSalpha, _alphaHeli] call Zen_MoveInVehicle;
 0 = [BTSbravo, _bravoHeli] call Zen_MoveInVehicle;
+["btsInfo",["Envio de suprimentos autorizado na inserção."]] call BIS_fnc_showNotification;
 
 
-// Espera o esquadrao chegar a menos de 10 metros pra soltar o supply
-// waitUntil {
-//     sleep 2;
+//Espera o esquadrao chegar a menos de 10 metros pra soltar o supply
+waitUntil {
+    sleep 2;
 
-//    [arrayDEBUG, "BTSpousoAlpha", 100] call f_checkBTSposition;
-// };
-//hint "DROP!";
-//[BTSsupplyDrop] call Zen_SpawnParachute;
+  (([BTSalpha, "BTSroadblock"] call Zen_Find2dDistance) < 100 || ([BTSbravo, "BTSroadblock"] call Zen_Find2dDistance) < 100)
+};
+["btsInfo",["Suprimento enviado! ETA 30s."]] call BIS_fnc_showNotification;
+[BTSsupplyDrop] call Zen_SpawnParachute;
 
 
 
@@ -161,7 +202,7 @@ _bravoHeli = ["heli_bravo", "B_Heli_Transport_01_F", 40] call Zen_SpawnHelicopte
 
 
 
-/*
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -302,7 +343,7 @@ _spwAzizayt_04 = [ "azizayt_04", east, "Infantry", 6, "Men", "Marv_IS"] call Zen
 
 
 
-*/
+
 
 _v01 = [ "v", east, "Infantry", 1, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
 _v02 = [ "v_1", east, "Infantry", 1, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
@@ -329,3 +370,43 @@ _b04 = [ "b3", east, "Infantry", 5, "Men", "Marv_IS"] call Zen_SpawnInfantryGarr
 _b05 = [ "b4", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
 _b06 = [ "b5", east, "Infantry", 9, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
 _b06 = [ "b6", east, "Infantry", 6, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+
+
+// Limpa carros
+clearMagazineCargoGlobal patrol01;
+clearWeaponCargoGlobal patrol01;
+clearItemCargoGlobal patrol01;
+clearBackpackCargoGlobal patrol01;
+
+clearMagazineCargoGlobal patrol02;
+clearWeaponCargoGlobal patrol02;
+clearItemCargoGlobal patrol02;
+clearBackpackCargoGlobal patrol02;
+
+clearMagazineCargoGlobal patrol03;
+clearWeaponCargoGlobal patrol03;
+clearItemCargoGlobal patrol03;
+clearBackpackCargoGlobal patrol03;
+
+clearMagazineCargoGlobal patrol04;
+clearWeaponCargoGlobal patrol04;
+clearItemCargoGlobal patrol04;
+clearBackpackCargoGlobal patrol04;
+
+clearMagazineCargoGlobal patrol05;
+clearWeaponCargoGlobal patrol05;
+clearItemCargoGlobal patrol05;
+clearBackpackCargoGlobal patrol05;
+
+clearMagazineCargoGlobal patrol06;
+clearWeaponCargoGlobal patrol06;
+clearItemCargoGlobal patrol06;
+clearBackpackCargoGlobal patrol06;
+
+
+0 = [patrol01, "b1"] spawn Zen_OrderVehiclePatrol;
+0 = [patrol02, "b5"] spawn Zen_OrderVehiclePatrol;
+0 = [patrol03, "b3"] spawn Zen_OrderVehiclePatrol;
+0 = [patrol04, "b4"] spawn Zen_OrderVehiclePatrol;
+0 = [patrol05, "b2"] spawn Zen_OrderVehiclePatrol;
+0 = [patrol06, "b6"] spawn Zen_OrderVehiclePatrol;

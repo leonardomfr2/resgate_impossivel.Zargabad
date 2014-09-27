@@ -1,7 +1,3 @@
-// Icludes para a missão
-#include "BTS\joinerUI\defines.hpp"
-#include "BTS\joinerUI\dialog.hpp"
-
 #include "LxOPS\lxOPS_dlg.hpp"
 
 #include "Zen_FrameworkFunctions\Zen_LoadoutFunctions\Zen_LoadoutDialog.hpp"
@@ -11,7 +7,18 @@
 // Classes de apoio
 class CfgNotifications {
     #include "Zen_FrameworkFunctions\Zen_TaskSystem\Zen_TaskNotifications.hpp"
+
+    class btsInfo
+	{
+		title = "COMANDO";
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcon_ca.paa";
+		description = "%1";
+		priority = 7;
+	};
 };
+
+
+
 
 class CfgCommunicationMenu {
     #include "Zen_FrameworkFunctions\Zen_FireSupportSystem\Zen_FireSupportMenu.hpp"
