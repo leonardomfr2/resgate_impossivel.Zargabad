@@ -78,6 +78,7 @@ class Mission
 					leader=1;
 					skill=0.60000002;
 					text="alpha";
+					init="this additem ""NVGoggles"";this assignitem ""NVGoggles"";this action[""NVGoggles"", this];";
 				};
 				class Item1
 				{
@@ -87,6 +88,7 @@ class Mission
 					vehicle="soldado_tg";
 					player="PLAY CDG";
 					skill=0.60000002;
+					init="this additem ""NVGoggles"";this assignitem ""NVGoggles"";this action[""NVGoggles"", this];";
 				};
 				class Item2
 				{
@@ -96,6 +98,7 @@ class Mission
 					vehicle="soldado_tg";
 					player="PLAY CDG";
 					skill=0.60000002;
+					init="this additem ""NVGoggles"";this assignitem ""NVGoggles"";this action[""NVGoggles"", this];";
 				};
 				class Item3
 				{
@@ -105,6 +108,7 @@ class Mission
 					vehicle="soldado_tg";
 					player="PLAY CDG";
 					skill=0.60000002;
+					init="this additem ""NVGoggles"";this assignitem ""NVGoggles"";this action[""NVGoggles"", this];";
 				};
 				class Item4
 				{
@@ -114,7 +118,7 @@ class Mission
 					vehicle="exp_tg";
 					player="PLAY CDG";
 					skill=0.60000002;
-					init="this setVariable [""AGM_IsEOD"", true];";
+					init="this setVariable [""AGM_IsEOD"", true];this additem ""NVGoggles"";this assignitem ""NVGoggles"";this action[""NVGoggles"", this];";
 				};
 				class Item5
 				{
@@ -124,6 +128,7 @@ class Mission
 					vehicle="soldado_tg";
 					player="PLAY CDG";
 					skill=0.60000002;
+					init="this additem ""NVGoggles"";this assignitem ""NVGoggles"";this action[""NVGoggles"", this];";
 				};
 				class Item6
 				{
@@ -133,6 +138,7 @@ class Mission
 					vehicle="soldado_tg";
 					player="PLAY CDG";
 					skill=0.60000002;
+					init="this additem ""NVGoggles"";this assignitem ""NVGoggles"";this action[""NVGoggles"", this];";
 				};
 				class Item7
 				{
@@ -142,7 +148,7 @@ class Mission
 					vehicle="medico_tg";
 					player="PLAY CDG";
 					skill=0.60000002;
-					init="this setVariable [""AGM_IsMedic"", true];";
+					init="this setVariable [""AGM_IsMedic"", true];this additem ""NVGoggles"";this assignitem ""NVGoggles"";this action[""NVGoggles"", this];";
 				};
 			};
 		};
@@ -424,13 +430,11 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={3872.4792,31.030888,5996.2075};
-					azimut=-59.750599;
-					special="NONE";
+					position[]={3861.4539,30.398193,6004.8872};
+					azimut=-414.16797;
 					id=22;
 					side="WEST";
-					vehicle="B_spotter_F";
-					player="PLAYER COMMANDER";
+					vehicle="ir_police";
 					leader=1;
 					skill=0.60000002;
 				};
@@ -444,8 +448,8 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={3861.4539,30.398193,6004.8872};
-					azimut=-414.16797;
+					position[]={3859.4453,30.312941,6005.6602};
+					azimut=92.956337;
 					id=23;
 					side="WEST";
 					vehicle="ir_police";
@@ -459,104 +463,92 @@ class Mission
 			side="WEST";
 			class Vehicles
 			{
-				items=1;
-				class Item0
-				{
-					position[]={3859.4453,30.312941,6005.6602};
-					azimut=92.956337;
-					id=24;
-					side="WEST";
-					vehicle="ir_police";
-					leader=1;
-					skill=0.60000002;
-				};
-			};
-		};
-		class Item12
-		{
-			side="WEST";
-			class Vehicles
-			{
 				items=8;
 				class Item0
 				{
 					position[]={166.48567,98.326828,8072.8945};
-					id=25;
+					id=24;
 					side="WEST";
 					vehicle="lider_squad_tg";
 					player="PLAY CDG";
 					leader=1;
 					skill=0.60000002;
 					text="bravo";
+					init="this additem ""NVGoggles"";this assignitem ""NVGoggles"";this action[""NVGoggles"", this];";
 				};
 				class Item1
 				{
 					position[]={153.7399,99.67157,8066.9092};
+					id=25;
+					side="WEST";
+					vehicle="soldado_tg";
+					player="PLAY CDG";
+					skill=0.60000002;
+					init="this additem ""NVGoggles"";this assignitem ""NVGoggles"";this action[""NVGoggles"", this];";
+				};
+				class Item2
+				{
+					position[]={160.29932,100.643,8065.1099};
 					id=26;
 					side="WEST";
 					vehicle="soldado_tg";
 					player="PLAY CDG";
 					skill=0.60000002;
+					init="this additem ""NVGoggles"";this assignitem ""NVGoggles"";this action[""NVGoggles"", this];";
 				};
-				class Item2
+				class Item3
 				{
-					position[]={160.29932,100.643,8065.1099};
+					position[]={167.8109,99.792839,8063.8408};
 					id=27;
 					side="WEST";
 					vehicle="soldado_tg";
 					player="PLAY CDG";
 					skill=0.60000002;
-				};
-				class Item3
-				{
-					position[]={167.8109,99.792839,8063.8408};
-					id=28;
-					side="WEST";
-					vehicle="soldado_tg";
-					player="PLAY CDG";
-					skill=0.60000002;
+					init="this additem ""NVGoggles"";this assignitem ""NVGoggles"";this action[""NVGoggles"", this];";
 				};
 				class Item4
 				{
 					position[]={175.0051,97.956795,8066.6978};
-					id=29;
+					id=28;
 					side="WEST";
 					vehicle="exp_tg";
 					player="PLAY CDG";
 					skill=0.60000002;
-					init="this setVariable [""AGM_IsEOD"", true];";
+					init="this setVariable [""AGM_IsEOD"", true];this additem ""NVGoggles"";this assignitem ""NVGoggles"";this action[""NVGoggles"", this];";
 				};
 				class Item5
 				{
 					position[]={166.64713,100.54173,8057.5986};
+					id=29;
+					side="WEST";
+					vehicle="soldado_tg";
+					player="PLAY CDG";
+					skill=0.60000002;
+					init="this additem ""NVGoggles"";this assignitem ""NVGoggles"";this action[""NVGoggles"", this];";
+				};
+				class Item6
+				{
+					position[]={161.25146,101.09424,8059.7148};
 					id=30;
 					side="WEST";
 					vehicle="soldado_tg";
 					player="PLAY CDG";
 					skill=0.60000002;
-				};
-				class Item6
-				{
-					position[]={161.25146,101.09424,8059.7148};
-					id=31;
-					side="WEST";
-					vehicle="soldado_tg";
-					player="PLAY CDG";
-					skill=0.60000002;
+					init="this additem ""NVGoggles"";this assignitem ""NVGoggles"";this action[""NVGoggles"", this];";
 				};
 				class Item7
 				{
 					position[]={175.21669,98.94651,8059.8203};
-					id=32;
+					id=31;
 					side="WEST";
 					vehicle="medico_tg";
 					player="PLAY CDG";
 					skill=0.60000002;
-					init="this setVariable [""AGM_IsMedic"", true];";
+					init="this setVariable [""AGM_IsMedic"", true];this additem ""NVGoggles"";this assignitem ""NVGoggles"";this action[""NVGoggles"", this];";
 				};
 			};
 		};
-		class Item13
+		class Item12
 		{
 			side="LOGIC";
 			class Vehicles
@@ -575,7 +567,7 @@ class Mission
 							typeName="Action";
 						};
 					};
-					id=33;
+					id=32;
 					side="LOGIC";
 					vehicle="AGM_ModuleCheckPBOs";
 					leader=1;
@@ -649,7 +641,7 @@ class Mission
 							typeName="AllowChatWhileUnconscious";
 						};
 					};
-					id=34;
+					id=33;
 					side="LOGIC";
 					vehicle="AGM_ModuleMedical";
 					lock="UNLOCKED";
@@ -657,10 +649,28 @@ class Mission
 				};
 			};
 		};
+		class Item13
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={3939.803,30.111872,6252.813};
+					id=34;
+					side="WEST";
+					vehicle="lider_squad_tg";
+					player="PLAYER COMMANDER";
+					leader=1;
+					skill=0.60000002;
+				};
+			};
+		};
 	};
 	class Vehicles
 	{
-		items=35;
+		items=37;
 		class Item0
 		{
 			position[]={3960.0249,30.557032,6195.0874};
@@ -1018,6 +1028,26 @@ class Mission
 			text="police02";
 			init="this engineOn true; player action[""lightOn"",this]";
 		};
+		class Item35
+		{
+			position[]={1914.1482,38.772655,4688.9922};
+			azimut=245.05299;
+			id=70;
+			side="EMPTY";
+			vehicle="AGM_Box_Medical";
+			skill=0.60000002;
+		};
+		class Item36
+		{
+			position[]={3942.0725,30.101622,6255.6411};
+			azimut=320;
+			id=71;
+			side="EMPTY";
+			vehicle="B_supplyCrate_F";
+			skill=0.60000002;
+			text="sadsadasd";
+			init="this enableSimulation false; this allowDamage false; [""Preload""] call BIS_fnc_arsenal; this addaction [""<t color='#FF0000'>"" +""Abrir o Arsenal"",{[""Open"",true] call BIS_fnc_arsenal},nil,1,true,false,"""",""((_target distance _this <3))""];";
+		};
 	};
 	class Markers
 	{
@@ -1060,14 +1090,6 @@ class Mission
 		};
 		class Item5
 		{
-			position[]={1872.5951,38.798336,4678.2617};
-			name="BTSstealInfo";
-			text=" BRAVO: Localização do Jornalista";
-			type="hd_objective";
-			colorName="ColorBlack";
-		};
-		class Item6
-		{
 			position[]={1933.6895,38.952251,4707.1138};
 			name="azizayt_02";
 			markerType="RECTANGLE";
@@ -1076,7 +1098,7 @@ class Mission
 			a=20;
 			b=20;
 		};
-		class Item7
+		class Item6
 		{
 			position[]={1871.6875,38.82193,4681.6948};
 			name="azizayt_03";
@@ -1086,7 +1108,7 @@ class Mission
 			a=20;
 			b=20;
 		};
-		class Item8
+		class Item7
 		{
 			position[]={1812.5421,39.001865,4665.5762};
 			name="azizayt_04";
@@ -1096,38 +1118,38 @@ class Mission
 			a=20;
 			b=20;
 		};
-		class Item9
+		class Item8
 		{
 			position[]={1849.6083,38.895206,4675.3506};
 			name="azizayt_aleatorio";
 			type="Empty";
 		};
-		class Item10
+		class Item9
 		{
 			position[]={3306.8433,12.998443,141.57861};
 			name="heli_alpha";
 			type="Empty";
 		};
-		class Item11
+		class Item10
 		{
 			position[]={3266.4092,12.085821,142.07764};
 			name="heli_bravo";
 			type="Empty";
 		};
-		class Item12
+		class Item11
 		{
 			position[]={4135.7563,15.433742,4750.0122};
 			name="BTSconvoy";
 			type="Empty";
 			angle=-15.290366;
 		};
-		class Item13
+		class Item12
 		{
 			position[]={4295.3027,17.21265,3730.8647};
 			name="BTScarlos";
 			type="Empty";
 		};
-		class Item14
+		class Item13
 		{
 			position[]={3990.5022,42.565052,5666.8022};
 			name="BTSroadblock";
@@ -1137,7 +1159,7 @@ class Mission
 			a=3;
 			b=3;
 		};
-		class Item15
+		class Item14
 		{
 			position[]={2732.196,36.519146,5169.7349};
 			name="nango_01";
@@ -1147,7 +1169,7 @@ class Mission
 			a=50;
 			b=50;
 		};
-		class Item16
+		class Item15
 		{
 			position[]={2793.5688,34.297531,5083.439};
 			name="nango_02";
@@ -1157,7 +1179,7 @@ class Mission
 			a=50;
 			b=50;
 		};
-		class Item17
+		class Item16
 		{
 			position[]={2921.8862,29.852303,4960.6655};
 			name="nango_03";
@@ -1167,7 +1189,7 @@ class Mission
 			a=50;
 			b=50;
 		};
-		class Item18
+		class Item17
 		{
 			position[]={2889.2446,27.538168,4814.7378};
 			name="nango_04";
@@ -1177,7 +1199,7 @@ class Mission
 			a=50;
 			b=50;
 		};
-		class Item19
+		class Item18
 		{
 			position[]={4805.0366,25.674721,4493.4385};
 			name="v";
@@ -1186,7 +1208,7 @@ class Mission
 			a=3;
 			b=3;
 		};
-		class Item20
+		class Item19
 		{
 			position[]={4762.9287,25.988777,4620.0005};
 			name="v_1";
@@ -1195,7 +1217,7 @@ class Mission
 			a=3;
 			b=3;
 		};
-		class Item21
+		class Item20
 		{
 			position[]={4871.2397,42.318363,4712.9248};
 			name="v_2";
@@ -1204,7 +1226,7 @@ class Mission
 			a=3;
 			b=3;
 		};
-		class Item22
+		class Item21
 		{
 			position[]={4913.1089,43.541553,4713.4019};
 			name="v_3";
@@ -1213,7 +1235,7 @@ class Mission
 			a=3;
 			b=3;
 		};
-		class Item23
+		class Item22
 		{
 			position[]={4938.1587,39.070602,4642.9043};
 			name="v_4";
@@ -1222,7 +1244,7 @@ class Mission
 			a=3;
 			b=3;
 		};
-		class Item24
+		class Item23
 		{
 			position[]={4925.7524,38.792927,4584.9312};
 			name="v_5";
@@ -1231,7 +1253,7 @@ class Mission
 			a=3;
 			b=3;
 		};
-		class Item25
+		class Item24
 		{
 			position[]={4948.1782,24.747179,4524.6919};
 			name="v_6";
@@ -1240,7 +1262,7 @@ class Mission
 			a=3;
 			b=3;
 		};
-		class Item26
+		class Item25
 		{
 			position[]={4844.8613,45.461174,4595.6172};
 			name="h";
@@ -1250,7 +1272,7 @@ class Mission
 			a=20;
 			b=20;
 		};
-		class Item27
+		class Item26
 		{
 			position[]={4932.7837,39.103241,4610.0669};
 			name="h_1";
@@ -1260,7 +1282,7 @@ class Mission
 			a=7;
 			b=7;
 		};
-		class Item28
+		class Item27
 		{
 			position[]={4238.9551,17,4159.21};
 			name="b";
@@ -1270,7 +1292,7 @@ class Mission
 			a=40;
 			b=40;
 		};
-		class Item29
+		class Item28
 		{
 			position[]={3954.4951,15.978372,4186.3975};
 			name="b1";
@@ -1280,7 +1302,7 @@ class Mission
 			a=100;
 			b=100;
 		};
-		class Item30
+		class Item29
 		{
 			position[]={4261.6104,17.566902,3968.396};
 			name="b2";
@@ -1290,7 +1312,7 @@ class Mission
 			a=100;
 			b=100;
 		};
-		class Item31
+		class Item30
 		{
 			position[]={4371.8701,16.680349,4302.1973};
 			name="b3";
@@ -1300,7 +1322,7 @@ class Mission
 			a=70;
 			b=70;
 		};
-		class Item32
+		class Item31
 		{
 			position[]={4373.8838,17.202801,4145.1152};
 			name="b4";
@@ -1310,7 +1332,7 @@ class Mission
 			a=70;
 			b=70;
 		};
-		class Item33
+		class Item32
 		{
 			position[]={4126.6807,16.724503,4159.7163};
 			name="b5";
@@ -1320,7 +1342,7 @@ class Mission
 			a=70;
 			b=70;
 		};
-		class Item34
+		class Item33
 		{
 			position[]={4530.0386,18.522327,4017.1851};
 			name="b6";
@@ -1329,6 +1351,13 @@ class Mission
 			colorName="ColorPink";
 			a=70;
 			b=70;
+		};
+		class Item34
+		{
+			position[]={763.45416,108.45482,4319.7891};
+			name="extraction";
+			text=" BRAVO: Ponto de extração";
+			type="hd_start";
 		};
 	};
 	class Sensors

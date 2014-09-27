@@ -20,6 +20,28 @@ player creatediaryRecord["Diary", ["Situação", "Intercept and destroy a convoy
 
 
 
+
+// Desabilita o lixo do thermal image
+0 = [] spawn {
+
+	_layer = 85125; 
+	while {true} do 
+	{ 
+		if (currentVisionMode player == 2) then
+			{ 
+			  	//hint "Porcaria de thermal";
+				_layer	cutText ["ERR 0921F - No battery or insufficient memory","BLACK",-3];
+				waituntil {currentVisionMode player != 2};
+				_layer cutText ["", "PLAIN"];
+			};
+			sleep 0.5; 
+	};
+};
+
+
+
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////// CLIENT SIDE PARA NESTA LINHA  /////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -167,11 +189,11 @@ _bravoHeli = ["heli_bravo", "B_Heli_Transport_01_F", 40] call Zen_SpawnHelicopte
 
 
 //Espera o esquadrao chegar a menos de 10 metros pra soltar o supply
-waitUntil {
-    sleep 2;
+// waitUntil {
+//     sleep 2;
 
-  (([BTSalpha, "BTSroadblock"] call Zen_Find2dDistance) < 100 || ([BTSbravo, "BTSroadblock"] call Zen_Find2dDistance) < 100)
-};
+//   (([BTSalpha, "BTSroadblock"] call Zen_Find2dDistance) < 100 || ([BTSbravo, "BTSroadblock"] call Zen_Find2dDistance) < 100)
+// };
 ["btsInfo",["Suprimento enviado! ETA 30s."]] call BIS_fnc_showNotification;
 [BTSsupplyDrop] call Zen_SpawnParachute;
 
@@ -191,7 +213,8 @@ waitUntil {
 
 
 
-
+// TASKS
+_task01 = [[BTSalpha,BTSbravo], "A localização do jornalista é uma base desativada de Azyzayt. Elimine os sequestradores e traga o jornalista para o ponto de extração.", "Encontre o jornalista", "azizayt_aleatorio", true] call Zen_InvokeTask;
 
 
 
@@ -229,17 +252,17 @@ waitUntil {
 
 
 // EVENTO 02: Roubo do Suprimento
-0 = [] spawn {
-	// Apaga a caixa se o player sair do raio de 1000 metros
-	waitUntil {	
-		sleep 2;
+// 0 = [] spawn {
+// 	// Apaga a caixa se o player sair do raio de 1000 metros
+// 	waitUntil {	
+// 		sleep 2;
 	
-		(([BTSalpha, "BTSpousoAlpha"] call Zen_Find2dDistance) > 1000 || ([BTSbravo, "BTSpousoBravo"] call Zen_Find2dDistance) > 1000)
-	};
+// 		(([BTSalpha, "BTSpousoAlpha"] call Zen_Find2dDistance) > 1000 || ([BTSbravo, "BTSpousoBravo"] call Zen_Find2dDistance) > 1000)
+// 	};
 
 
-	deleteVehicle BTSsupplyDrop;
-};
+// 	deleteVehicle BTSsupplyDrop;
+// };
 
 
 // EVENTO 03: Too Many, so few
