@@ -7,9 +7,9 @@ enableSaving [false, false];
 
 
 // Cria o briefing
-player creatediaryRecord["Diary", ["Execução", "Intercept and destroy a convoy resupplying the radar site.<br/>The radar site may be guarded by one squad.<br/>"]];
-player creatediaryRecord["Diary", ["Missão", "Intercept and destroy a convoy resupplying the radar site.<br/>The radar site may be guarded by one squad.<br/>"]];
-player creatediaryRecord["Diary", ["Situação", "Intercept and destroy a convoy resupplying the radar site.<br/>The radar site may be guarded by one squad.<br/>"]];
+player creatediaryRecord["Diary", ["Execução", "Alpha e Bravo vão fazer inserção via aérea e se dirigir a base de Azizayt.<br/>Ambos os esquadrões irão assegurar a área e resgatar o jornalista. <br/><br/>Imediatamente, após resgate se dirigir ao ponto Bravo e chamar a extração."]];
+player creatediaryRecord["Diary", ["Missão", "Nossa missão é resgatar o jornalista e proceder para o ponto de extração.<br/><br/>"]];
+player creatediaryRecord["Diary", ["Situação", "O jornalista Carlos Santana foi sequestrado por extremistas quando fazia uma matéria em Zargabad sobre a instabilidade política local. <br/><br/>Nossa presidente, mesmo se opondo a respostas militares e pressionada por sua campanha política, nos requisitou o resgate imediato desse jornalista de forma discreta.<br/><br/>"]];
 
 
 execVM "Intro.sqf";

@@ -1459,24 +1459,6 @@ class Mission
 			b=120;
 		};
 	};
-	class Sensors
-	{
-		items=1;
-		class Item0
-		{
-			position[]={351.27979,79.554985,8048.9087};
-			a=0;
-			b=0;
-			activationBy="ALPHA";
-			repeating=1;
-			interruptable=1;
-			age="UNKNOWN";
-			expActiv="nul = [] execVM ""LxOPS\lxOPS.sqf"";";
-			class Effects
-			{
-			};
-		};
-	};
 };
 class Intro
 {
