@@ -40,18 +40,18 @@ class CfgDebriefing
 {
 	class End1
 	{
-		title = "Fracasso!";
+		title = "A missão falhou";
 		subtitle = "Seu esquadrão foi eliminado.";
 		description = "O governo alega não ter conhecimento de você e de sua tropa.";
-		pictureBackground = "signs\logo.paa";
+		//pictureBackground = "signs\logo.paa";
 		pictureColor[] = {0.0,0.3,0.6,1};
 	};
 	class End2
 	{
-		title = "Sucesso!";
-		subtitle = "Completou a extração.";
-		description = "Seu esquadrão saiu do país, evitando assim uma crise diplomática";
-		pictureBackground = "signs\logo.paa";
+		title = "Missão Cumprida";
+		subtitle = "Eliminou os sequestradores";
+		description = "Mesmo contra ordens superiores, seu esquadrão eliminou os sequestradores do jornalista. A corte marcial os aguarda, mas a justiça foi feita.";
+		//pictureBackground = "signs\logo.paa";
 		pictureColor[] = {0.0,0.3,0.6,1};
 	};
 };
@@ -68,7 +68,10 @@ onLoadMission = "“Diplomacia é a arte de mandar as pessoas para o inferno de 
 loadScreen = "Images\rescue.jpg";
 overviewPicture = "Images\rescue.jpg";
 overviewText = "“Diplomacia é a arte de mandar as pessoas para o inferno de uma maneira em que elas perguntem qual é o melhor caminho.” - Winston Churchill";
-respawn = "BASE";
+respawn = 4;
+respawnDelay = 40;
+respawnDialog = 1;
+respawnOnStart = 0;
 enableDebugConsole = 1;
 DisabledAI = true;
 

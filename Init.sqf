@@ -12,7 +12,7 @@ player creatediaryRecord["Diary", ["Missão", "Intercept and destroy a convoy re
 player creatediaryRecord["Diary", ["Situação", "Intercept and destroy a convoy resupplying the radar site.<br/>The radar site may be guarded by one squad.<br/>"]];
 
 
-//execVM "Intro.sqf";
+execVM "Intro.sqf";
 
 
 
@@ -41,6 +41,8 @@ player creatediaryRecord["Diary", ["Situação", "Intercept and destroy a convoy
 
 
 
+if (isServer) then {call compile preprocessFile "Scripts\initBuildings.sqf";};
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////// CLIENT SIDE PARA NESTA LINHA  /////////////////////////////////////////////////
@@ -53,6 +55,10 @@ sleep 1;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////// SERVER SIDE A PARTIR DESTA LINHA  /////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// Multiplica os danos
+0 = [allUnits, true] call Zen_MultiplyDamage;
 
 
 
@@ -88,6 +94,122 @@ _MARKERALPHA("b4");
 _MARKERALPHA("b5");
 _MARKERALPHA("b6");
 
+_MARKERALPHA("final");
+
+
+
+
+////////////////////////////////////////////////
+// Métodos globais
+
+// Metodo para adicionar actions
+f_AddAction = {
+    {
+        _id = _x addAction [(_this select 1), missionNamespace getVariable (_this select 2), (_this select 3), 2, true, true, "", "((_this distance _target) < 3)"];
+        _x setVariable ["Zen_Action_" + (_this select 1), _id];
+    } forEach (_this select 0);
+};
+
+// Metodo para remover actions
+f_RemoveAction = {
+    {
+        _x removeAction (_x getVariable ["Zen_Action_" + (_this select 1), 0]);
+    } forEach (_this select 0);
+};
+
+
+// Metodo para completar a missao do jornalista e criar outra
+f_verificaLoc = {
+    [[(_this select 0)], "<t color='#2D8CE0'>Verificar laptop</t>"] call f_RemoveAction;
+    Zen_MP_Closure_Packet = ["f_RemoveAction", [[(_this select 0)], "<t color='#2D8CE0'>Verificar laptop</t>"]];
+    publicVariable "Zen_MP_Closure_Packet";
+
+    0 = [(_this select 3), "canceled"] call Zen_UpdateTask;
+    0 = [] call f_popZargabad;
+};
+
+
+
+
+f_popZargabad = {
+	
+	obj02 = [bts, "Nossa inteligência errou ao achar que isso seria tão simples. Graças as informações do laptop, conseguimos rastrear a possível localização do jornalista. Vá a Zargabad e traga-o com vida a qualquer custo!", "Novas informações", "jornalista", true] call Zen_InvokeTask;
+
+
+	 // Verifica se está rodando local ou server dedicado
+	 if !(isDedicated) then {
+	    0 = [[carlos], "<t color='#2D8CE0'>Identificar corpo</t>", "f_popCasa", obj02] call f_AddAction;
+	};
+
+	// Se estiver rodando dedicado, manda o comando para todos os players
+	Zen_MP_Closure_Packet = ["f_AddAction", [bts, "<t color='#2D8CE0'>Identificar corpo</t>", "f_popCasa", obj02]];
+	publicVariable "Zen_MP_Closure_Packet";
+
+	_b01 = [ "b", east, "Infantry", 15, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+	_b02 = [ "b1", east, "Infantry", 20, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+	_b03 = [ "b2", east, "Infantry", 20, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+	_b04 = [ "b3", east, "Infantry", 5, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+	_b05 = [ "b4", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+	_b06 = [ "b5", east, "Infantry", 9, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+	_b06 = [ "b6", east, "Infantry", 6, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+
+
+
+};
+
+
+f_popCasa = {
+
+  	[[(_this select 0)], "<t color='#2D8CE0'>Identificar corpo</t>"] call f_RemoveAction;
+    Zen_MP_Closure_Packet = ["f_RemoveAction", [[(_this select 0)], "<t color='#2D8CE0'>Identificar corpo</t>"]];
+    publicVariable "Zen_MP_Closure_Packet";
+
+    0 = [(_this select 3), "succeeded"] call Zen_UpdateTask;
+
+
+
+    obj03 = [bts, "O jornalista foi assasinado. Isso é inaceitável! Entretanto, temos informações sobre os sequestradores. A Presidente não autorizou eliminar os extremistas, mas eu estou cancelando essa ordem. Elimine todos eles. Sem prisioneiros!", "Elimine os sequestradores", "h", true] call Zen_InvokeTask;
+
+
+
+
+	_v01 = [ "v", east, "Infantry", 1, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+	_v02 = [ "v_1", east, "Infantry", 1, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+	_v03 = [ "v_2", east, "Infantry", 1, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+	_v04 = [ "v_3", east, "Infantry", 1, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+	_v05 = [ "v_4", east, "Infantry", 1, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+	_v06 = [ "v_5", east, "Infantry", 1, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+
+	_h = [ "h", east, "Infantry", 30, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+	_h_1 = [ "h_1", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+
+	_vc = [s1, east] call Zen_SpawnVehicleCrew;
+	_vc1 = [s2, east] call Zen_SpawnVehicleCrew;
+	_vc2 = [s3, east] call Zen_SpawnVehicleCrew;
+	_vc3 = [s4, east] call Zen_SpawnVehicleCrew;
+	_vc4 = [s5, east] call Zen_SpawnVehicleCrew;
+	_vc5 = [s6, east] call Zen_SpawnVehicleCrew;
+
+	extremistas = [[_v01,_v02,_v03,_v04,_v05,_v06,_h,_h_1,_vc,_vc1,_vc2,_vc3,_vc4,_vc5], obj03, "succeeded", "final"] spawn Zen_TriggerAreaClear;
+
+
+	// Espera os objetivos serem cumpridos
+	waitUntil {
+	    sleep 10;
+	    ([[obj01, obj02, obj03]] call Zen_AreTasksComplete)
+	};
+
+
+	sleep 10;
+
+	"end2" call bis_fnc_endMission;
+
+	Zen_MP_Closure_Packet = ["bis_fnc_endMission", "end2"];
+	publicVariable "Zen_MP_Closure_Packet";
+	
+};
+
+
 
 
 
@@ -98,15 +220,8 @@ _MARKERALPHA("b6");
 
 
 
-////////////////////////////////////////////////
 
 
-
-
-
-
-
-if (isServer) then {call compile preprocessFile "Scripts\initBuildings.sqf";};
 
 
 // Coloca AGM nos carros de policia
@@ -162,7 +277,7 @@ clearBackpackCargoGlobal carisis04;
 BTSalpha = group alpha;
 BTSbravo = group bravo;
 
-
+bts = [west] call Zen_ConvertToObjectArray;
 
 
 // Coloca todas unidades em um array para uso posterior
@@ -189,11 +304,11 @@ _bravoHeli = ["heli_bravo", "B_Heli_Transport_01_F", 40] call Zen_SpawnHelicopte
 
 
 //Espera o esquadrao chegar a menos de 10 metros pra soltar o supply
-// waitUntil {
-//     sleep 2;
+waitUntil {
+    sleep 2;
 
-//   (([BTSalpha, "BTSroadblock"] call Zen_Find2dDistance) < 100 || ([BTSbravo, "BTSroadblock"] call Zen_Find2dDistance) < 100)
-// };
+  (([BTSalpha, "BTSpousoAlpha"] call Zen_Find2dDistance) < 100 || ([BTSbravo, "BTSpousoBravo"] call Zen_Find2dDistance) < 100)
+};
 ["btsInfo",["Suprimento enviado! ETA 30s."]] call BIS_fnc_showNotification;
 [BTSsupplyDrop] call Zen_SpawnParachute;
 
@@ -213,8 +328,8 @@ _bravoHeli = ["heli_bravo", "B_Heli_Transport_01_F", 40] call Zen_SpawnHelicopte
 
 
 
-// TASKS
-_task01 = [[BTSalpha,BTSbravo], "A localização do jornalista é uma base desativada de Azyzayt. Elimine os sequestradores e traga o jornalista para o ponto de extração.", "Encontre o jornalista", "azizayt_aleatorio", true] call Zen_InvokeTask;
+
+
 
 
 
@@ -298,10 +413,6 @@ _task01 = [[BTSalpha,BTSbravo], "A localização do jornalista é uma base desat
 
 
 
-
-
-
-
 // Popula a base de Azizayt
 _spwAzizayt_01 = [ "azizayt_01", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantry;
 _spwAzizayt_02 = [ "azizayt_02", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantry;
@@ -324,6 +435,20 @@ _spwAzizayt_04 = [ "azizayt_04", east, "Infantry", 6, "Men", "Marv_IS"] call Zen
 
 
 
+// Coloca o laptop na mesa
+_task01 = [["Land_Laptop_unfolded_F"], [mesa]] call Zen_SpawnItemsOnTable; 
+
+// Cria o objetivo de achar o jornalista
+ obj01 = [bts, "A localização do jornalista é uma base desativada de Azyzayt. Elimine os sequestradores e traga o jornalista para o ponto de extração.", "Encontre o jornalista", "azizayt_aleatorio", true] call Zen_InvokeTask;
+ 
+ // Verifica se está rodando local ou server dedicado
+ if !(isDedicated) then {
+    0 = [_task01, "<t color='#2D8CE0'>Verificar laptop</t>", "f_verificaLoc", obj01] call f_AddAction;
+};
+
+// Se estiver rodando dedicado, manda o comando para todos os players
+Zen_MP_Closure_Packet = ["f_AddAction", [bts, "<t color='#2D8CE0'>Verificar laptop</t>", "f_verificaLoc", obj01]];
+publicVariable "Zen_MP_Closure_Packet";
 
 
 
@@ -368,31 +493,7 @@ _spwAzizayt_04 = [ "azizayt_04", east, "Infantry", 6, "Men", "Marv_IS"] call Zen
 
 
 
-_v01 = [ "v", east, "Infantry", 1, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
-_v02 = [ "v_1", east, "Infantry", 1, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
-_v03 = [ "v_2", east, "Infantry", 1, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
-_v04 = [ "v_3", east, "Infantry", 1, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
-_v05 = [ "v_4", east, "Infantry", 1, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
-_v06 = [ "v_5", east, "Infantry", 1, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
 
-_h = [ "h", east, "Infantry", 30, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
-_h_1 = [ "h_1", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
-
-0 = [s1, east] call Zen_SpawnVehicleCrew;
-0 = [s2, east] call Zen_SpawnVehicleCrew;
-0 = [s3, east] call Zen_SpawnVehicleCrew;
-0 = [s4, east] call Zen_SpawnVehicleCrew;
-0 = [s5, east] call Zen_SpawnVehicleCrew;
-0 = [s6, east] call Zen_SpawnVehicleCrew;
-
-
-_b01 = [ "b", east, "Infantry", 15, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
-_b02 = [ "b1", east, "Infantry", 20, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
-_b03 = [ "b2", east, "Infantry", 20, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
-_b04 = [ "b3", east, "Infantry", 5, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
-_b05 = [ "b4", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
-_b06 = [ "b5", east, "Infantry", 9, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
-_b06 = [ "b6", east, "Infantry", 6, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
 
 
 // Limpa carros
@@ -433,3 +534,7 @@ clearBackpackCargoGlobal patrol06;
 0 = [patrol04, "b4"] spawn Zen_OrderVehiclePatrol;
 0 = [patrol05, "b2"] spawn Zen_OrderVehiclePatrol;
 0 = [patrol06, "b6"] spawn Zen_OrderVehiclePatrol;
+
+
+
+
