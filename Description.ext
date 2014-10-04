@@ -73,9 +73,9 @@ loadScreen = "Images\rescue.jpg";
 overviewPicture = "Images\rescue.jpg";
 overviewText = "“Lamento enormemente os ataques aéreos contra o Estado Islâmico. O Brasil sempre vai acreditar que a melhor forma é o diálogo, o acordo e a intermediação da ONU.” - Dilma Rousseff";
 respawn = 1;
-respawnDelay = 40;
-respawnDialog = 1;
-respawnOnStart = 0;
+//respawnDelay = 40;
+//respawnDialog = 1;
+//respawnOnStart = 0;
 enableDebugConsole = 1;
 DisabledAI = false;
 

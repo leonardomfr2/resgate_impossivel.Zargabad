@@ -1,7 +1,7 @@
 #include "Zen_FrameworkFunctions\Zen_InitHeader.sqf"
 
 // Resgate impossivel by Toaster[BTS]
-// Version = 0.1
+// Version = 1.2
 
 enableSaving [false, false];
 
@@ -12,7 +12,7 @@ player creatediaryRecord["Diary", ["Missão", "A ABIN tem fontes seguras sobre a
 player creatediaryRecord["Diary", ["Situação", "O jornalista Carlos Santana foi sequestrado por extremistas quando fazia uma matéria em Zargabad sobre a instabilidade política local. <br/><br/>Nossa presidente, mesmo se opondo a respostas militares e pressionada por sua campanha política, nos requisitou o resgate imediato desse jornalista de forma discreta.<br/><br/>"]];
 
 
-//execVM "Intro.sqf";
+execVM "Intro.sqf";
 
 
 
@@ -343,6 +343,9 @@ Zen_MP_Closure_Packet = ["f_warnings", ["btsInfo","Suprimento enviado! ETA 30s."
 publicVariable "Zen_MP_Closure_Packet";
 
 [BTSsupplyDrop] call Zen_SpawnParachute;
+Zen_MP_Closure_Packet = ["Zen_SpawnParachute", [BTSsupplyDrop]];
+publicVariable "Zen_MP_Closure_Packet";
+
 
 
 
