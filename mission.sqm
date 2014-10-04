@@ -46,7 +46,7 @@ class Mission
 	randomSeed=15905242;
 	class Intel
 	{
-		briefingName="Resgate Impossível";
+		briefingName="Deserto Negro V3";
 		startWeather=0;
 		startWind=0.59999996;
 		startGust=1;
@@ -82,7 +82,7 @@ class Mission
 					leader=1;
 					skill=0.60000002;
 					text="alpha";
-					init="this additem ""NVGoggles"";this assignitem ""NVGoggles"";this action[""NVGoggles"", this]; this setDamage 0;";
+					init="this additem ""NVGoggles"";this assignitem ""NVGoggles"";this action[""NVGoggles"", this]; ";
 				};
 				class Item1
 				{
@@ -598,7 +598,7 @@ class Mission
 						};
 						class Item2
 						{
-							value="120";
+							value="240";
 							parentCls="AGM_ModuleMedical";
 							typeName="MaxUnconsciousnessTime";
 						};
@@ -622,13 +622,13 @@ class Mission
 						};
 						class Item6
 						{
-							value="0";
+							value="1";
 							parentCls="AGM_ModuleMedical";
 							typeName="PreventInstaDeath";
 						};
 						class Item7
 						{
-							value="0";
+							value="1";
 							parentCls="AGM_ModuleMedical";
 							typeName="PreventDeathWhileUnconscious";
 						};

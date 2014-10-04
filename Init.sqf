@@ -8,11 +8,11 @@ enableSaving [false, false];
 
 // Cria o briefing
 player creatediaryRecord["Diary", ["Execução", "Alpha e Bravo vão fazer inserção via aérea e se dirigir a base de Azizayt.<br/>Ambos os esquadrões irão assegurar a área e resgatar o jornalista. <br/><br/>Imediatamente, após resgate se dirigir ao ponto Bravo e chamar a extração."]];
-player creatediaryRecord["Diary", ["Missão", "Nossa missão é resgatar o jornalista e proceder para o ponto de extração.<br/><br/>"]];
+player creatediaryRecord["Diary", ["Missão", "A ABIN tem fontes seguras sobre a localização de Carlos. Nossa missão é assegurar o ponto determinado pela inteligência e fazer a extração do jornalista.<br/><br/>"]];
 player creatediaryRecord["Diary", ["Situação", "O jornalista Carlos Santana foi sequestrado por extremistas quando fazia uma matéria em Zargabad sobre a instabilidade política local. <br/><br/>Nossa presidente, mesmo se opondo a respostas militares e pressionada por sua campanha política, nos requisitou o resgate imediato desse jornalista de forma discreta.<br/><br/>"]];
 
 
-execVM "Intro.sqf";
+//execVM "Intro.sqf";
 
 
 
@@ -37,29 +37,6 @@ execVM "Intro.sqf";
 			sleep 0.5; 
 	};
 };
-
-
-
-
-if (isServer) then {call compile preprocessFile "Scripts\initBuildings.sqf";};
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////// CLIENT SIDE PARA NESTA LINHA  /////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-if (!isServer) exitWith {};
-sleep 1;
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////// SERVER SIDE A PARTIR DESTA LINHA  /////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-// Multiplica os danos
-0 = [allUnits, true] call Zen_MultiplyDamage;
-
 
 
 
@@ -100,7 +77,16 @@ _MARKERALPHA("final");
 
 
 ////////////////////////////////////////////////
+
+
+
+
+bts = [west] call Zen_ConvertToObjectArray;
+publicVariable "bts";
+
+
 // Métodos globais
+
 
 // Metodo para adicionar actions
 f_AddAction = {
@@ -110,13 +96,15 @@ f_AddAction = {
     } forEach (_this select 0);
 };
 
+
+
+
 // Metodo para remover actions
 f_RemoveAction = {
     {
         _x removeAction (_x getVariable ["Zen_Action_" + (_this select 1), 0]);
     } forEach (_this select 0);
 };
-
 
 // Metodo para completar a missao do jornalista e criar outra
 f_verificaLoc = {
@@ -127,8 +115,6 @@ f_verificaLoc = {
     0 = [(_this select 3), "canceled"] call Zen_UpdateTask;
     0 = [] call f_popZargabad;
 };
-
-
 
 
 f_popZargabad = {
@@ -191,7 +177,7 @@ f_popCasa = {
 	_vc5 = [s6, east] call Zen_SpawnVehicleCrew;
 
 	extremistas = [[_v01,_v02,_v03,_v04,_v05,_v06,_h,_h_1,_vc,_vc1,_vc2,_vc3,_vc4,_vc5], obj03, "succeeded", "final"] spawn Zen_TriggerAreaClear;
-
+	
 
 	// Espera os objetivos serem cumpridos
 	waitUntil {
@@ -211,9 +197,49 @@ f_popCasa = {
 
 
 
+f_warnings = {
+    private ["_box", "_descricao"];
+
+    _box = _this select 0;
+    _descricao = _this select 1;
+
+    [_box,[_descricao]] call BIS_fnc_showNotification;
 
 
-////////////////////////////////////////////////
+};
+
+
+
+if (isServer) then {call compile preprocessFile "Scripts\initBuildings.sqf";};
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////// CLIENT SIDE PARA NESTA LINHA  /////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+if (!isServer) exitWith {};
+sleep 1;
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////// SERVER SIDE A PARTIR DESTA LINHA  /////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// Multiplica os danos
+0 = [allUnits, true] call Zen_MultiplyDamage;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -277,7 +303,7 @@ clearBackpackCargoGlobal carisis04;
 BTSalpha = group alpha;
 BTSbravo = group bravo;
 
-bts = [west] call Zen_ConvertToObjectArray;
+
 
 
 // Coloca todas unidades em um array para uso posterior
@@ -300,8 +326,10 @@ _bravoHeli = ["heli_bravo", "B_Heli_Transport_01_F", 40] call Zen_SpawnHelicopte
 // Coloca os squads nos helis
 0 = [BTSalpha, _alphaHeli] call Zen_MoveInVehicle;
 0 = [BTSbravo, _bravoHeli] call Zen_MoveInVehicle;
-["btsInfo",["Envio de suprimentos autorizado na inserção."]] call BIS_fnc_showNotification;
 
+0 = ["btsInfo","Envio de suprimentos autorizado na inserção."] call f_warnings;
+Zen_MP_Closure_Packet = ["f_warnings", ["btsInfo","Envio de suprimentos autorizado na inserção."]];
+publicVariable "Zen_MP_Closure_Packet";
 
 //Espera o esquadrao chegar a menos de 10 metros pra soltar o supply
 waitUntil {
@@ -309,7 +337,11 @@ waitUntil {
 
   (([BTSalpha, "BTSpousoAlpha"] call Zen_Find2dDistance) < 100 || ([BTSbravo, "BTSpousoBravo"] call Zen_Find2dDistance) < 100)
 };
-["btsInfo",["Suprimento enviado! ETA 30s."]] call BIS_fnc_showNotification;
+
+0 = ["btsInfo","Envio de suprimentos autorizado na inserção."] call f_warnings;
+Zen_MP_Closure_Packet = ["f_warnings", ["btsInfo","Suprimento enviado! ETA 30s."]];
+publicVariable "Zen_MP_Closure_Packet";
+
 [BTSsupplyDrop] call Zen_SpawnParachute;
 
 
@@ -366,18 +398,7 @@ waitUntil {
 
 
 
-// EVENTO 02: Roubo do Suprimento
-// 0 = [] spawn {
-// 	// Apaga a caixa se o player sair do raio de 1000 metros
-// 	waitUntil {	
-// 		sleep 2;
-	
-// 		(([BTSalpha, "BTSpousoAlpha"] call Zen_Find2dDistance) > 1000 || ([BTSbravo, "BTSpousoBravo"] call Zen_Find2dDistance) > 1000)
-// 	};
 
-
-// 	deleteVehicle BTSsupplyDrop;
-// };
 
 
 // EVENTO 03: Too Many, so few
@@ -436,18 +457,19 @@ _spwAzizayt_04 = [ "azizayt_04", east, "Infantry", 6, "Men", "Marv_IS"] call Zen
 
 
 // Coloca o laptop na mesa
-_task01 = [["Land_Laptop_unfolded_F"], [mesa]] call Zen_SpawnItemsOnTable; 
+task01 = [["Land_Laptop_unfolded_F"], [mesa]] call Zen_SpawnItemsOnTable; 
 
 // Cria o objetivo de achar o jornalista
  obj01 = [bts, "A localização do jornalista é uma base desativada de Azyzayt. Elimine os sequestradores e traga o jornalista para o ponto de extração.", "Encontre o jornalista", "azizayt_aleatorio", true] call Zen_InvokeTask;
- 
+ publicVariable "obj01";
+
  // Verifica se está rodando local ou server dedicado
  if !(isDedicated) then {
-    0 = [_task01, "<t color='#2D8CE0'>Verificar laptop</t>", "f_verificaLoc", obj01] call f_AddAction;
+    0 = [task01, "<t color='#2D8CE0'>Verificar laptop</t>", "f_verificaLoc", obj01] call f_AddAction;
 };
 
 // Se estiver rodando dedicado, manda o comando para todos os players
-Zen_MP_Closure_Packet = ["f_AddAction", [bts, "<t color='#2D8CE0'>Verificar laptop</t>", "f_verificaLoc", obj01]];
+Zen_MP_Closure_Packet = ["f_AddAction", [task01, "<t color='#2D8CE0'>Verificar laptop</t>", "f_verificaLoc", obj01]];
 publicVariable "Zen_MP_Closure_Packet";
 
 

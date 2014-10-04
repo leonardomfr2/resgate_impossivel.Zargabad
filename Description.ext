@@ -1,4 +1,5 @@
 //#include "LxOPS\lxOPS_dlg.hpp"
+#include "taw_vd\dialog.hpp"
 
 #include "Zen_FrameworkFunctions\Zen_LoadoutFunctions\Zen_LoadoutDialog.hpp"
 
@@ -17,7 +18,10 @@ class CfgNotifications {
 	};
 };
 
-
+class CfgFunctions
+{
+	#include "taw_vd\CfgFunctions.hpp"
+};
 
 
 class CfgCommunicationMenu {
@@ -63,17 +67,17 @@ class CfgDebriefing
 
 
 author = "Toaster[BTS]";
-onLoadName = "Resgate Impossível";
-onLoadMission = "“Diplomacia é a arte de mandar as pessoas para o inferno de uma maneira em que elas perguntem qual é o melhor caminho.” - Winston Churchill";
+onLoadName = "Deserto Negro";
+onLoadMission = "“Lamento enormemente os ataques aéreos contra o Estado Islâmico. O Brasil sempre vai acreditar que a melhor forma é o diálogo, o acordo e a intermediação da ONU.” - Dilma Rousseff";
 loadScreen = "Images\rescue.jpg";
 overviewPicture = "Images\rescue.jpg";
-overviewText = "“Diplomacia é a arte de mandar as pessoas para o inferno de uma maneira em que elas perguntem qual é o melhor caminho.” - Winston Churchill";
-respawn = 4;
+overviewText = "“Lamento enormemente os ataques aéreos contra o Estado Islâmico. O Brasil sempre vai acreditar que a melhor forma é o diálogo, o acordo e a intermediação da ONU.” - Dilma Rousseff";
+respawn = 1;
 respawnDelay = 40;
 respawnDialog = 1;
 respawnOnStart = 0;
 enableDebugConsole = 1;
-DisabledAI = true;
+DisabledAI = false;
 
 
 
