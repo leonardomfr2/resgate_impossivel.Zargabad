@@ -276,6 +276,18 @@ police02 additemCargoGlobal ["AGM_MapTools", 1];
 police02 additemCargoGlobal ["AGM_SpareBarrel", 3];
 police02 additemCargoGlobal ["AGM_ItemKestrel", 1];
 
+
+
+clearMagazineCargoGlobal police03;
+clearWeaponCargoGlobal police03;
+clearItemCargoGlobal police03;
+clearBackpackCargoGlobal police03;
+
+clearMagazineCargoGlobal police04;
+clearWeaponCargoGlobal police04;
+clearItemCargoGlobal police04;
+clearBackpackCargoGlobal police04;
+
 // Limpa carro isis
 clearMagazineCargoGlobal carisis;
 clearWeaponCargoGlobal carisis;
@@ -486,10 +498,10 @@ publicVariable "Zen_MP_Closure_Packet";
 	 	
 	 };
 
-	_spwNango_01 = [ "nango_01", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantry;
-	_spwNango_02 = [ "nango_02", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantry;
-	_spwNango_03 = [ "nango_03", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantry;
-	_spwNango_04 = [ "nango_04", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantry;
+	_spwNango_01 = [ "nango_01", east, "Infantry", 4, "Men", "Marv_IS"] call Zen_SpawnInfantry;
+	_spwNango_02 = [ "nango_02", east, "Infantry", 4, "Men", "Marv_IS"] call Zen_SpawnInfantry;
+	_spwNango_03 = [ "nango_03", east, "Infantry", 4, "Men", "Marv_IS"] call Zen_SpawnInfantry;
+	_spwNango_04 = [ "nango_04", east, "Infantry", 4, "Men", "Marv_IS"] call Zen_SpawnInfantry;
 
 	_spwnCarNango01 = ["nango_01", "IS_armed"] call Zen_SpawnVehicle;
 	0 = [_spwnCarNango01, east] call Zen_SpawnVehicleCrew;

@@ -20,7 +20,8 @@ class Mission
 		"agm_core",
 		"agm_medical",
 		"A3_Data_F_Curator_Characters",
-		"A3_Characters_F_EPC"
+		"A3_Characters_F_EPC",
+		"A3_Air_F_Gamma_Plane_Fighter_03"
 	};
 	addOnsAuto[]=
 	{
@@ -41,7 +42,8 @@ class Mission
 		"camisc3",
 		"cabuildings2_misc_cargo",
 		"IS_all",
-		"A3_Structures_F_Civ_Camping"
+		"A3_Structures_F_Civ_Camping",
+		"A3_Air_F_Gamma_Plane_Fighter_03"
 	};
 	randomSeed=15905242;
 	class Intel
@@ -58,7 +60,7 @@ class Mission
 		year=2014;
 		month=12;
 		day=24;
-		hour=4;
+		hour=5;
 		minute=35;
 		startFogDecay=0.0049999999;
 		forecastFogDecay=0.0049999999;
@@ -754,7 +756,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=37;
+		items=40;
 		class Item0
 		{
 			position[]={3960.0249,30.557032,6195.0874};
@@ -1127,6 +1129,40 @@ class Mission
 			id=77;
 			side="EMPTY";
 			vehicle="Hanged";
+			leader=1;
+			skill=0.60000002;
+		};
+		class Item37
+		{
+			position[]={3871.7703,30.870539,5988.3789};
+			azimut=518.89832;
+			id=78;
+			side="EMPTY";
+			vehicle="IR_swat_offroad";
+			leader=1;
+			skill=0.60000002;
+			text="police03";
+			init="this engineOn true; player action[""lightOn"",this]";
+		};
+		class Item38
+		{
+			position[]={3861.6189,30.475328,5991.3906};
+			azimut=74.268097;
+			id=79;
+			side="EMPTY";
+			vehicle="ir_police_offroad";
+			leader=1;
+			skill=0.60000002;
+			text="police04";
+			init="this engineOn true; player action[""lightOn"",this]; ";
+		};
+		class Item39
+		{
+			position[]={3560.373,22.269318,4167.9316};
+			azimut=-90.700134;
+			id=80;
+			side="EMPTY";
+			vehicle="I_Plane_Fighter_03_CAS_F";
 			leader=1;
 			skill=0.60000002;
 		};
