@@ -1,7 +1,7 @@
 #include "Zen_FrameworkFunctions\Zen_InitHeader.sqf"
 
 // Resgate impossivel by Toaster[BTS]
-// Version = 1.2
+// Version = 1.3
 
 enableSaving [false, false];
 
