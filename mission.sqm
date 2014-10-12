@@ -48,7 +48,7 @@ class Mission
 	randomSeed=15905242;
 	class Intel
 	{
-		briefingName="Deserto Negro V3";
+		briefingName="Deserto Negro V4";
 		startWeather=0;
 		startWind=0.59999996;
 		startGust=1;
@@ -851,15 +851,14 @@ class Mission
 		items=40;
 		class Item0
 		{
-			position[]={3960.0249,30.557032,6195.0874};
-			azimut=320;
-			offsetY=200;
+			position[]={3846.0144,30.032055,6001.5879};
+			azimut=269.56384;
 			id=45;
 			side="EMPTY";
 			vehicle="B_supplyCrate_F";
 			skill=0.60000002;
 			text="BTSsupplyDrop";
-			init="this enableSimulation false; this allowDamage false; [""Preload""] call BIS_fnc_arsenal; this addaction [""<t color='#FF0000'>"" +""Abrir o Arsenal"",{[""Open"",true] call BIS_fnc_arsenal},nil,1,true,false,"""",""((_target distance _this <3))""];";
+			init="this allowDamage false; [""Preload""] call BIS_fnc_arsenal; this addaction [""<t color='#FF0000'>"" +""Abrir o Arsenal"",{[""Open"",true] call BIS_fnc_arsenal},nil,1,true,false,"""",""((_target distance _this <3))""];";
 		};
 		class Item1
 		{
@@ -1261,7 +1260,7 @@ class Mission
 	};
 	class Markers
 	{
-		items=37;
+		items=38;
 		class Item0
 		{
 			position[]={4019.7512,30.738729,6230.0649};
@@ -1585,6 +1584,13 @@ class Mission
 			fillName="Grid";
 			a=120;
 			b=120;
+		};
+		class Item37
+		{
+			position[]={3861.4878,30.399853,6001.166};
+			name="suporte";
+			text="CHARLIE: Equipamento";
+			type="mil_join";
 		};
 	};
 };

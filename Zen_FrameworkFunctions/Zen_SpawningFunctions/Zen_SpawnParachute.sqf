@@ -41,8 +41,8 @@ waitUntil {
 
 _object allowDamage false;
 detach _object;
-0 = [_object, "SmokeShellBlue"] call Zen_SpawnVehicle;
-0 = [_object, "B_IRStrobe", ((getPosATL _parachute select 2)) ] call Zen_SpawnVehicle;
+//0 = [_object, "SmokeShellBlue"] call Zen_SpawnVehicle;
+//0 = [_object, "B_IRStrobe"] call Zen_SpawnVehicle;
 
 sleep 1;
 _object allowDamage true;

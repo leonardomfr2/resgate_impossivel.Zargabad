@@ -341,9 +341,9 @@ _bravoHeli = ["heli_bravo", "B_Heli_Transport_01_F", 40] call Zen_SpawnHelicopte
 0 = [BTSalpha, _alphaHeli] call Zen_MoveInVehicle;
 0 = [BTSbravo, _bravoHeli] call Zen_MoveInVehicle;
 
-0 = ["btsInfo","Envio de suprimentos autorizado na inserção."] call f_warnings;
-Zen_MP_Closure_Packet = ["f_warnings", ["btsInfo","Envio de suprimentos autorizado na inserção."]];
-publicVariable "Zen_MP_Closure_Packet";
+// 0 = ["btsInfo","Envio de suprimentos autorizado na inserção."] call f_warnings;
+// Zen_MP_Closure_Packet = ["f_warnings", ["btsInfo","Envio de suprimentos autorizado na inserção."]];
+// publicVariable "Zen_MP_Closure_Packet";
 
 //Espera o esquadrao chegar a menos de 10 metros pra soltar o supply
 waitUntil {
@@ -352,11 +352,11 @@ waitUntil {
   (([BTSalpha, "BTSpousoAlpha"] call Zen_Find2dDistance) < 100 || ([BTSbravo, "BTSpousoBravo"] call Zen_Find2dDistance) < 100)
 };
 
-0 = ["btsInfo","Envio de suprimentos autorizado na inserção."] call f_warnings;
-Zen_MP_Closure_Packet = ["f_warnings", ["btsInfo","Suprimento enviado! ETA 30s."]];
+0 = ["btsInfo","Suprimento no ponto Charlie."] call f_warnings;
+Zen_MP_Closure_Packet = ["f_warnings", ["btsInfo","Suprimento no ponto Charlie."]];
 publicVariable "Zen_MP_Closure_Packet";
 
-[BTSsupplyDrop] call Zen_SpawnParachute;
+
 
 
 
