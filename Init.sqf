@@ -131,6 +131,8 @@ f_popZargabad = {
 	Zen_MP_Closure_Packet = ["f_AddAction", [carlos, "<t color='#2D8CE0'>Identificar corpo</t>", "f_popCasa", obj02]];
 	publicVariable "Zen_MP_Closure_Packet";
 
+	carlos setDamage 1;
+
 	_b01 = [ "b", east, "Infantry", 10, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
 	_b02 = [ "b1", east, "Infantry", 10, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
 	_b03 = [ "b2", east, "Infantry", 10, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;

@@ -59,7 +59,7 @@ _supplyVehicle = [([_startPos, 15, _roadDir, "trig"] call zen_ExtendPosition), _
 _troopVehicle = [([_startPos, 1, _roadDir, "trig"] call zen_ExtendPosition), _troopVehicleType, 90 - _roadDir] call Zen_SpawnGroundVehicle;
 
 _troopCargo = ZEN_STD_OBJ_CVS(_troopVehicle) - 1;
-_troopGroup = [_startPos, _side, "infantry", [1, _troopCargo], "Hezbollah", "Hezbollah"] call Zen_SpawnInfantry;
+_troopGroup = [_startPos, _side, "infantry", [1, _troopCargo], "Men", "Marv_IS"] call Zen_SpawnInfantry;
 
 0 = [_troopGroup, _troopVehicle, "cargo"] call Zen_MoveInVehicle;
 
