@@ -128,7 +128,7 @@ f_popZargabad = {
 	};
 
 	// Se estiver rodando dedicado, manda o comando para todos os players
-	Zen_MP_Closure_Packet = ["f_AddAction", [carlos, "<t color='#2D8CE0'>Identificar corpo</t>", "f_popCasa", obj02]];
+	Zen_MP_Closure_Packet = ["f_AddAction", [[carlos], "<t color='#2D8CE0'>Identificar corpo</t>", "f_popCasa", obj02]];
 	publicVariable "Zen_MP_Closure_Packet";
 
 	carlos setDamage 1;
