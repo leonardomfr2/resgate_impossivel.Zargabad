@@ -128,16 +128,16 @@ f_popZargabad = {
 	};
 
 	// Se estiver rodando dedicado, manda o comando para todos os players
-	Zen_MP_Closure_Packet = ["f_AddAction", [bts, "<t color='#2D8CE0'>Identificar corpo</t>", "f_popCasa", obj02]];
+	Zen_MP_Closure_Packet = ["f_AddAction", [carlos, "<t color='#2D8CE0'>Identificar corpo</t>", "f_popCasa", obj02]];
 	publicVariable "Zen_MP_Closure_Packet";
 
-	_b01 = [ "b", east, "Infantry", 15, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
-	_b02 = [ "b1", east, "Infantry", 20, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
-	_b03 = [ "b2", east, "Infantry", 20, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
-	_b04 = [ "b3", east, "Infantry", 5, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
-	_b05 = [ "b4", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
-	_b06 = [ "b5", east, "Infantry", 9, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
-	_b06 = [ "b6", east, "Infantry", 6, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+	_b01 = [ "b", east, "Infantry", 10, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+	_b02 = [ "b1", east, "Infantry", 10, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+	_b03 = [ "b2", east, "Infantry", 10, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+	_b04 = [ "b3", east, "Infantry", 4, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+	_b05 = [ "b4", east, "Infantry", 6, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+	_b06 = [ "b5", east, "Infantry", 6, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
+	_b06 = [ "b6", east, "Infantry", 4, "Men", "Marv_IS"] call Zen_SpawnInfantryGarrison;
 
 
 
@@ -355,8 +355,6 @@ Zen_MP_Closure_Packet = ["f_warnings", ["btsInfo","Suprimento enviado! ETA 30s."
 publicVariable "Zen_MP_Closure_Packet";
 
 [BTSsupplyDrop] call Zen_SpawnParachute;
-Zen_MP_Closure_Packet = ["Zen_SpawnParachute", [BTSsupplyDrop]];
-publicVariable "Zen_MP_Closure_Packet";
 
 
 
@@ -449,7 +447,7 @@ publicVariable "Zen_MP_Closure_Packet";
 
 
 
-// Popula a base de Azizayt
+// // Popula a base de Azizayt
 _spwAzizayt_01 = [ "azizayt_01", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantry;
 _spwAzizayt_02 = [ "azizayt_02", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantry;
 _spwAzizayt_03 = [ "azizayt_03", east, "Infantry", 8, "Men", "Marv_IS"] call Zen_SpawnInfantry;
